@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Seller</title>
+    <link rel="stylesheet" type="text/css" href="./../static/style.css">
+
+</head>
+<body>
+
+<header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+    <div>
+        <h1>Payment successful. Your invoice:</h1>
+        <p th:text="${invoice.getCarInfoEntity().getMarkaEntity().getMarka()}"></p>
+        <p th:text="${'Customer: ' + invoice.getCustomerName()}"></p>
+        <p th:text="${'Seller: ' + invoice.getSellerName()}"></p>
+
+        <br>
+
+        <p th:text="${'Customer phone number: ' + invoice.getCustomerPhone()}"></p>
+        <p th:text="${'Seller phone nubber: ' + invoice.getSellerPhone()}"></p>
+    </div>
+</body>
+</html>

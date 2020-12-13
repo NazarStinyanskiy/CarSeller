@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Seller</title>
+    <link rel="stylesheet" type="text/css" href="./../static/style.css">
+
+</head>
+<body>
+
+<header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+
+    <div>
+        <h1 th:text="${'Car: ' + car.getTitle()}"></h1>
+        <p th:text="${car.getDescription()}"></p>
+        <p th:text="${'Price: ' + car.getPrice()}"></p>
+        <p th:text="${'Engine: ' + car.getEngineEntity().getEngine()}"></p>
+        <p th:text="${'Marka: ' + car.getMarkaEntity().getMarka()}"></p>
+        <p th:text="${'Color: ' + car.getColorEntity().getColor()}"></p>
+
+        <div th:each="modification : ${car.getModificationEntity()}">
+            <p th:text="'Modification: ' + ${modification.getTitle()}"></p>
+        </div>
+
+        <br>
+
+        <p th:text="${'User: ' + car.getUserInfoEntity().getName()}"></p>
+
+        <form th:action="@{/auto/{id}/buy(id=${car.getId()})}" method="get">
+            <input type="submit" value="Buy"/>
+        </form>
+    </div>
+</body>
+</html>

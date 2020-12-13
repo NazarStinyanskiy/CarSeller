@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Seller</title>
+    <link rel="stylesheet" type="text/css" href="./../static/style.css">
+
+</head>
+<body>
+
+<header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+    <div>
+        <form action="/registration" th:object="${user}" method="post">
+
+            <div>
+                <label for="nameField">Enter your name:</label>
+                <input type="text" id="nameField" th:field="*{name}" required>
+            </div>
+
+            <div>
+                <label for="phoneField">Enter your phone:</label>
+                <input type="text" id="phoneField" th:field="*{phone}" required>
+            </div>
+
+            <div>
+                <label for="loginField">Enter your login:</label>
+                <input type="text" id="loginField" th:field="*{login}" required>
+            </div>
+
+            <div>
+                <label for="passwordField">Enter your password:</label>
+                <input type="text" id="passwordField" th:field="*{password}" required>
+            </div>
+
+            <div>
+                <input type="submit" value="Registration">
+            </div>
+        </form>
+
+        <p style="color: red" th:text="${errorMessage}"></p>
+    </div>
+</body>
+</html>

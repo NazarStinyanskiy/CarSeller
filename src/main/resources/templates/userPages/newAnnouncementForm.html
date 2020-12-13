@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Seller</title>
+    <link rel="stylesheet" href="../../static/style.css">
+</head>
+<body>
+
+<header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+
+    <div>
+        <form id="form-data" th:action="@{/account/{id}/newAnnouncement(id=${user_info.getId()})}" th:object="${car_info}" method="post">
+            <div>
+                <label for="title">Enter title:</label>
+                <input type="text" id="title" name="title" th:field="*{title}" required>
+            </div>
+
+            <div>
+                <label for="price">Enter price:</label>
+                <input type="text" id="price" name="price" th:field="*{price}" required>
+            </div>
+
+            <div>
+                <label for="description">Enter description:</label>
+                <textarea name="description" id="description" cols="60" rows="10" th:field="*{description}"></textarea>
+            </div>
+
+            <div>
+                <label for="marka">Select brand: </label>
+                <select name="marka" id="marka" th:field="*{marka_id}" required>
+                    <option th:each="marka : ${markaList}"
+                            th:value="${marka.id}"
+                            th:text="${marka.getMarka()}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label for="engine">Select engine: </label>
+                <select name="engine" id="engine" th:field="*{engine_id}" required>
+                    <option th:each="engine : ${engineList}"
+                            th:value="${engine.id}"
+                            th:text="${engine.getEngine()}"></option>
+                </select>
+            </div>
+
+            <div>
+                <label for="color">Select color: </label>
+                <select name="color" id="color" th:field="*{color_id}" required>
+                    <option th:each="color : ${colorList}"
+                            th:value="${color.id}"
+                            th:text="${color.getColor()}"></option>
+                </select>
+            </div>
+
+            <button id="add-select" class="add-select-btn">+</button>
+
+            <div id="select-wrapper">
+                <select class="dn" name="firstMod" th:field="*{firstModification}" required/>
+                    <option th:each="modification : ${modifications}"
+                            th:value="${modification}"
+                            th:text="${modification}" th:selected="${modification=='Choose...'}"></option>
+                </select>
+
+
+                <select class="dn" name="secondMod" th:field="*{secondModification}" required/>
+                    <option th:each="modification : ${modifications}"
+                            th:value="${modification}"
+                            th:text="${modification}" th:selected="${modification=='Choose...'}"></option>
+                </select>
+
+
+                <select class="dn" name="thirdMod" th:field="*{thirdModification}" required/>
+                    <option th:each="modification : ${modifications}"
+                            th:value="${modification}"
+                            th:text="${modification}" th:selected="${modification=='Choose...'}"></option>
+                </select>
+
+
+                <select class="dn" name="fourthMod" th:field="*{fourthModification}" required/>
+                    <option th:each="modification : ${modifications}"
+                            th:value="${modification}"
+                            th:text="${modification}" th:selected="${modification=='Choose...'}"></option>
+                </select>
+            </div>
+
+            <input type="submit" value="Post">
+
+        </form>
+    </div>
+
+    <script>
+        const wrapper = document.getElementById("select-wrapper");
+        let showSelectNumber = 0;
+        const selectNumber = wrapper.children.length;
+
+        const showSelect = (event) => {
+            console.log(event)
+            event.preventDefault()
+            showSelectNumber < selectNumber &&
+            wrapper.children[showSelectNumber].classList.remove("dn");
+            showSelectNumber++;
+        };
+
+        document.getElementById('form-data').addEventListener('submit', ()=>{
+            console.log('submit')
+        })
+
+        const addSelectBtn = document.getElementById("add-select");
+        addSelectBtn.addEventListener("click", showSelect);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="./../static/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+
+    <div th:each="car : ${mostExpensiveCars}">
+        <a th:href="@{/auto/{id}(id=${car.getId()})}"
+           th:text="${car.getTitle() + '   ' + car.getPrice() + '$'}"></a>
+    </div>
+
+
+    <div>
+        <form action="/auto" method="get" th:object="${filter}">
+
+            <div>
+                <label for="color">Select color: </label>
+                <select name="color" id="color" th:field="*{color_id}" required>
+                    <option th:each="color : ${colorList}"
+                            th:value="${color.id}"
+                            th:text="${color.getColor()}"
+                            th:selected="${color.getColor() == 'Choose...'}"></option>
+                </select>
+            </div>
+
+
+            <div>
+                <label for="engine">Select engine: </label>
+                <select name="engine" id="engine" th:field="*{engine_id}" required>
+                    <option th:each="engine : ${engineList}"
+                            th:value="${engine.id}"
+                            th:text="${engine.getEngine()}"
+                            th:selected="${engine.getEngine() == 'Choose...'}"></option>
+                </select>
+            </div>
+
+
+            <div>
+                <label for="marka">Select brand: </label>
+                <select name="marka" id="marka" th:field="*{marka_id}" required>
+                    <option th:each="marka : ${markaList}"
+                            th:value="${marka.id}"
+                            th:text="${marka.getMarka()}"
+                            th:selected="${marka.getMarka() == 'Choose...'}"></option>
+                </select>
+            </div>
+
+
+            <div>
+                <p>Price range:
+                    <input type="text" id="lowerPrice" th:field="*{lowerPrice}">
+                    <input type="text" id="higherPrice" th:field="*{higherPrice}">
+                </p>
+            </div>
+
+            <input type="submit" value="Find">
+        </form>
+    </div>
+
+</body>
+
+</html>

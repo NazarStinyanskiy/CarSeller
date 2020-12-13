@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Seller</title>
+    <link rel="stylesheet" type="text/css" href="./../static/style.css">
+
+</head>
+<body>
+
+<header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+    <div>
+        <form action="/login" method="post" th:object="${info}">
+            <div>
+                <label for="login">Enter login:</label>
+                <input type="text" value="Enter your login: " id="login" th:field="*{login}">
+            </div>
+
+            <div>
+                <label for="password">Enter password:</label>
+                <input type="text" value="enter your password" id="password" th:field="*{password}">
+            </div>
+
+            <div>
+                <input type="submit" value="Login">
+            </div>
+        </form>
+
+        <div>
+            <a href="/registration">don't have an account?</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Seller</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-links">
+            <a href="/">HOME</a>
+            <a href="/login">LOG IN</a>
+        </div>
+    </header>
+
+    <div>
+        <form th:action="@{/auto/{id}/buy/success(id=${car.getId()})}" method="post" th:object="${invoice}">
+            <label for="name">Enter your name: </label>
+            <input type="text" value="Enter name" id="name" th:field="*{customerName}" required>
+
+            <label for="phone">Enter your phone number: </label>
+            <input type="text" value="Enter phone" id="phone" th:field="*{customerPhone}" required>
+
+            <input type="submit" value="Pay">
+        </form>
+    </div>
+</body>
+</html>
