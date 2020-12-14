@@ -15,9 +15,11 @@
         </div>
     </header>
 
+    <h3>MOST EXPENSIVE CARS:</h3>
+
     <div th:each="car : ${mostExpensiveCars}">
         <a th:href="@{/auto/{id}(id=${car.getId()})}"
-           th:text="${car.getTitle() + '   ' + car.getPrice() + '$'}"></a>
+           th:text="${car.getTitle() + ' | ' + car.getPrice() + '$'}"></a>
     </div>
 
 

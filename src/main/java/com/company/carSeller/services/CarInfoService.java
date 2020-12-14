@@ -95,7 +95,7 @@ public class CarInfoService {
 
         while(iterator.hasNext()){
             CarInfoEntity entity = iterator.next();
-            if(entity.getPrice() > lowerPrice && entity.getPrice() < higherPrice){
+            if(entity.getPrice() >= lowerPrice && entity.getPrice() <= higherPrice){
                 resultList.add(entity);
             }
         }
