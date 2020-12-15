@@ -159,9 +159,10 @@ public class SecureAccessController {
         try {
             image.transferTo(new File(System.getProperty("user.dir")
                     + "/src/main/webapp/images/" + car_id + ".jpeg"));
+            System.out.println(System.getProperty("user.dir")
+                    + "/src/main/webapp/images/" + car_id + ".jpeg");
         } catch (IOException e) {
             e.printStackTrace();
-            return "redirect:/registration";
         }
 
         return "redirect:/auto/" + car_id;
