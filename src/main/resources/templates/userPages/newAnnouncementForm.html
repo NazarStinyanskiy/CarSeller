@@ -15,7 +15,7 @@
     </header>
 
     <div>
-        <form id="form-data" th:action="@{/account/{id}/newAnnouncement(id=${user_info.getId()})}" th:object="${car_info}" method="post">
+        <form id="form-data" enctype="multipart/form-data" th:action="@{/account/{id}/newAnnouncement(id=${user_info.getId()})}" th:object="${car_info}" method="post">
             <div>
                 <label for="title">Enter title:</label>
                 <input type="text" id="title" name="title" th:field="*{title}" required>
@@ -30,7 +30,12 @@
                 <label for="description">Enter description:</label>
                 <textarea name="description" id="description" cols="60" rows="10" th:field="*{description}"></textarea>
             </div>
-
+            
+            <div>
+                <label for="imageDownload">Choose file...</label>
+                <input type="file" accept="image/jpeg" id="imageDownload" name="image">
+            </div>
+            
             <div>
                 <label for="marka">Select brand: </label>
                 <select name="marka" id="marka" th:field="*{marka_id}" required>

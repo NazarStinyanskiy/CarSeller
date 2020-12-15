@@ -25,7 +25,7 @@
         </div>
 
         <div th:each="car : ${cars}">
-            <h3 th:text="${car.getMarkaEntity().getMarka() + ' ' + car.getPrice()}"></h3>
+            <h3 th:text="${car.getTitle() + ' ' + car.getPrice()}"></h3>
             <p>
                 <form th:action="@{/auto/{id}/edit(id=${car.getId()})}" method="get">
                     <input type="submit" value="Edit">

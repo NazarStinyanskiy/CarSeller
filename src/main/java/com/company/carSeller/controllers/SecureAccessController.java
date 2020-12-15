@@ -4,12 +4,15 @@ import com.company.carSeller.entities.*;
 import com.company.carSeller.modelClasses.CarAnnouncementInfo;
 import com.company.carSeller.modelClasses.UserLoginInfo;
 import com.company.carSeller.services.*;
+import org.apache.catalina.connector.CoyoteInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.io.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -125,7 +128,8 @@ public class SecureAccessController {
     @PostMapping("/account/{id}/newAnnouncement")
     public String newAnnouncement(HttpSession httpSession,
                                   @PathVariable("id") String id,
-                                  @ModelAttribute("car_info") CarAnnouncementInfo carAnnouncementInfo){
+                                  @ModelAttribute("car_info") CarAnnouncementInfo carAnnouncementInfo,
+                                  @RequestParam("image") MultipartFile image){
 
         UserInfoEntity userInfoEntity = userInfoService.findById(Integer.parseInt(id));
 
@@ -151,6 +155,13 @@ public class SecureAccessController {
         carInfoEntity.setModificationEntity(set);
 
         int car_id = carInfoService.save(carInfoEntity).getId();
+
+        try {
+            image.transferTo(new File(System.getProperty("user.dir")
+                    + "/src/main/resources/img/" + car_id + ".jpeg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return "redirect:/auto/" + car_id;
     }
