@@ -161,6 +161,7 @@ public class SecureAccessController {
                     + "/src/main/webapp/images/" + car_id + ".jpeg"));
         } catch (IOException e) {
             e.printStackTrace();
+            return "redirect:/registration";
         }
 
         return "redirect:/auto/" + car_id;
