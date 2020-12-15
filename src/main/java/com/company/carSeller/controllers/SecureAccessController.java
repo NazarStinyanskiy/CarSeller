@@ -158,7 +158,7 @@ public class SecureAccessController {
 
         try {
             image.transferTo(new File(System.getProperty("user.dir")
-                    + "/src/main/resources/img/" + car_id + ".jpeg"));
+                    + "/src/main/webapp/images/" + car_id + ".jpeg"));
         } catch (IOException e) {
             e.printStackTrace();
         }
